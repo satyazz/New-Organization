@@ -28,7 +28,7 @@ class Settings(BaseSettings):
 # Application
 # ==========================
 
-APP_NAME : str = ""
+APP_NAME : str = "ai_models"
 APP_VERSION : str = ""
 DUBEG : bool = True
 ENVEIROMENT : str = "development"
