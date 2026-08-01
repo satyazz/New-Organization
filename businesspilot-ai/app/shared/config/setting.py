@@ -11,6 +11,10 @@ from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
+     # project_name :str = ""
+     # app_version :str = ""
+     # environment:str = ""
+     # debug: bool =True
      
      """
     Enterprise application settings.
@@ -28,7 +32,7 @@ class Settings(BaseSettings):
      # Application
      # ==========================
      APP_NAME : str = "ai_models"
-     APP_VERSION : str = ""
+     APP_VERSION : str = "0.10"
      DUBEG : bool = True
      ENVEIROMENT : str = "development"
      # =========================
