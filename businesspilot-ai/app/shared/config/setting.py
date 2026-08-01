@@ -50,7 +50,9 @@ class Settings(BaseSettings):
           le=1,
      )
 
-     DATA_BASE_URL : str = ("postgresql://postgres:password@localhost:5432/ai_business_os")
+     DATABASE_URL: str = (
+    "postgresql+psycopg://satyam@localhost:5432/ai_business_os"
+)
 
      # =========================
      # Logging

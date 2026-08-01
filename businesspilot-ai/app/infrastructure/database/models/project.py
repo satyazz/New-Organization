@@ -16,7 +16,7 @@ class Project(BaseEntity):
         String (100),
         nullable=True,
     )
-    client_id = Mapped[str] = mapped_column (
+    client_id : Mapped[str] = mapped_column (
         ForeignKey("clients.id"),
         nullable=False,
         index=True,

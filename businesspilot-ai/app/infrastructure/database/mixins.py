@@ -1,3 +1,4 @@
+from __future__ import annotations
 import uuid
 from sqlalchemy import UUID
 from sqlalchemy.orm import Mapped
@@ -6,7 +7,7 @@ from datetime import datetime
 from sqlalchemy import DateTime
 from sqlalchemy import func
 from sqlalchemy import Boolean
-from __future__ import annotations
+
 
 class UUIDMixin:
     """
