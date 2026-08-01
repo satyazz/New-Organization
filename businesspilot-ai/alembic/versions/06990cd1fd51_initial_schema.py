@@ -1,8 +1,8 @@
-"""Initial migration
+"""initial schema
 
-Revision ID: 1b5adc6db9fc
+Revision ID: 06990cd1fd51
 Revises: 
-Create Date: 2026-08-01 22:38:17.034981
+Create Date: 2026-08-01 23:09:37.806060
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '1b5adc6db9fc'
+revision: str = '06990cd1fd51'
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -29,24 +29,24 @@ def upgrade() -> None:
     sa.Column('country', sa.String(length=100), nullable=False),
     sa.Column('industry', sa.String(length=100), nullable=True),
     sa.Column('id', sa.UUID(), nullable=False),
-    sa.Column('create_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
-    sa.Column('update_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
+    sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
+    sa.Column('updated_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
     sa.Column('is_deleted', sa.Boolean(), nullable=False),
     sa.Column('deleted_at', sa.DateTime(timezone=True), nullable=True),
-    sa.PrimaryKeyConstraint('id', name=op.f('uq_clients'))
+    sa.PrimaryKeyConstraint('id', name=op.f('pk_clients'))
     )
     op.create_index(op.f('ix_clients_email'), 'clients', ['email'], unique=True)
     op.create_table('projects',
     sa.Column('project_name', sa.String(length=255), nullable=False),
-    sa.Column('description', sa.String(length=100), nullable=True),
+    sa.Column('description', sa.Text(), nullable=True),
     sa.Column('client_id', sa.UUID(), nullable=False),
     sa.Column('id', sa.UUID(), nullable=False),
-    sa.Column('create_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
-    sa.Column('update_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
+    sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
+    sa.Column('updated_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
     sa.Column('is_deleted', sa.Boolean(), nullable=False),
     sa.Column('deleted_at', sa.DateTime(timezone=True), nullable=True),
     sa.ForeignKeyConstraint(['client_id'], ['clients.id'], name=op.f('fkprojectsclient_idclients')),
-    sa.PrimaryKeyConstraint('id', name=op.f('uq_projects'))
+    sa.PrimaryKeyConstraint('id', name=op.f('pk_projects'))
     )
     op.create_index(op.f('ix_projects_client_id'), 'projects', ['client_id'], unique=False)
     # ### end Alembic commands ###
