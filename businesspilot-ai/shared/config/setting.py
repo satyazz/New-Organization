@@ -23,40 +23,36 @@ class Settings(BaseSettings):
           env_file_encoding="utf-8",
           case_sensitive="False",
           extra="ignore"
+     )    
+     # =========================
+     # Application
+     # ==========================
+     APP_NAME : str = "ai_models"
+     APP_VERSION : str = ""
+     DUBEG : bool = True
+     ENVEIROMENT : str = "development"
+     # =========================
+     # Server
+     # ==========================
+     HOST :str = " "
+     PROT : int = 8000
+     # =========================
+     # AI
+     # ==========================
+     DEFAULT_MODEL : str = "llama3"
+     TEMPERATURE : float = Field(
+          default=0.2,
+          ge=0,
+          le=1,
      )
-# =========================
-# Application
-# ==========================
 
-APP_NAME : str = "ai_models"
-APP_VERSION : str = ""
-DUBEG : bool = True
-ENVEIROMENT : str = "development"
-# =========================
-# Server
-# ==========================
-HOST :str = " "
-PROT : int = 8000
+     DATA_BASE_URL : str = ("postgresql://postgres:password@localhost:5432/ai_business_os")
 
-# =========================
-# AI
-# ==========================
+     # =========================
+     # Logging
+     # ==========================
 
-DEFAULT_MODEL : str = "llama3"
-TEMPERATURE : float = Field(
-     default=0.2,
-     ge=0,
-     le=1,
-)
-
-
-DATA_BASE_URL : str = ("postgresql://postgres:password@localhost:5432/ai_business_os")
-
-# =========================
-# Logging
-# ==========================
-
-LOG_LEVEL :str = "INFO"
+     LOG_LEVEL :str = "INFO"
 
 @lru_cache
 def get_settings() -> Settings:
